@@ -1,0 +1,5 @@
+.canvas {
+    display: inline-block;
+    background-color: var(--secondary-accent-color);
+    position: relative;
+}

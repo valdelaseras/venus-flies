@@ -1,0 +1,12 @@
+.grid {
+    height: 100%;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+.grid::after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
