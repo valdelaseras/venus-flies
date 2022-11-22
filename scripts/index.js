@@ -1,5 +1,5 @@
-import { Match } from "./match.js";
-import { Fly } from "./fly.js";
+import { Match } from "./Match.js";
+import { Fly } from "./Fly.js";
 import { Venus } from "./venus.js";
 
 let players = [
@@ -9,6 +9,22 @@ let players = [
     },
     {
         username: 'b',
+        type: Fly,
+    },
+    {
+        username: 'c',
+        type: Fly,
+    },
+    {
+        username: 'd',
+        type: Venus,
+    },
+    {
+        username: 'e',
+        type: Venus,
+    },
+    {
+        username: 'f',
         type: Venus,
     }
 ]

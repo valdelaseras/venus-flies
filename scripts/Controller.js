@@ -1,6 +1,5 @@
-import { Venus } from "./venus.js";
-import { Fly } from "./fly.js";
-import { Player } from "./player.js";
+import { Venus } from "./Venus.js";
+import { Player } from "./Player.js";
 
 export class Controller {
     constructor( players ) {
