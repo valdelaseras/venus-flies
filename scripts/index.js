@@ -9,14 +9,6 @@ let players = [
     },
     {
         username: 'b',
-        type: Fly,
-    },
-    {
-        username: 'c',
-        type: Venus,
-    },
-    {
-        username: 'd',
         type: Venus,
     }
 ]

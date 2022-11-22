@@ -1,8 +1,6 @@
 export class Fly {
-    constructor( x, y, ctx ) {
-        this.x = x;
-        this.y = y;
-        this.ctx = ctx;
+    constructor() {
+        this.ctx = document.querySelector('canvas').getContext('2d');
 
         this.init();
     }
@@ -13,13 +11,13 @@ export class Fly {
     }
 
     setInitialPosition(){
-        this.ctx.moveTo( this.x, this.y );
-        this.draw( this.x, this.y );
+        this.ctx.moveTo( 20, 20 );
+        this.draw( 20, 20 );
     }
 
     draw(){
         this.ctx.beginPath();
-        this.ctx.arc( this.x, this.y, 6, 0, 2 * Math.PI )
+        this.ctx.arc( 20, 20, 6, 0, 2 * Math.PI )
         this.ctx.fill();
     }
 
