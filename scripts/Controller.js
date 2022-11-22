@@ -24,7 +24,7 @@ export class Controller {
         } else {
             if ( e.code === 'ArrowUp' || e.code === 'ArrowDown' ||
                  e.code === 'ArrowRight' || e.code === 'ArrowLeft' ){
-                player.avatar.move();
+                player.avatar.move( e );
             }
         }
     }

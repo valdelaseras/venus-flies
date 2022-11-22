@@ -1,8 +1,10 @@
 export class Fly {
     constructor() {
         this.ctx = document.querySelector('canvas').getContext('2d');
-        this.x = Math.random() * ( 1000 );
-        this.y = Math.random() * ( 600 );
+
+        //@TODO: should not overlap with one another
+        this.x = Math.random() * ( 1100 );
+        this.y = Math.random() * ( 600 - 10 ) + 10;
 
         this.init();
     }
@@ -23,7 +25,20 @@ export class Fly {
         this.ctx.fill();
     }
 
-    move() {
+    move( e ) {
+        const speed = 20;
         console.log('move');
+        if ( e.code === 'ArrowUp' ){
+            this.y -= speed;
+        } else if ( e.code === 'ArrowDown' ){
+            this.y += speed;
+        } else if ( e.code === 'ArrowLeft' ){
+            this.x -= speed;
+        } else if ( e.code === 'ArrowRight' ){
+            this.x += speed;
+        }
+
+        // this.ctx.clearRect(0, 0, 1200, 800 );
+        this.draw();
     }
 }
