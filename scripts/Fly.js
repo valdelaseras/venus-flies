@@ -1,5 +1,8 @@
-export class Fly {
-    constructor() {
+import { Player } from "./Player.js";
+
+export class Fly extends Player {
+    constructor( username ) {
+        super( username );
         this.ctx = document.querySelector('canvas').getContext('2d');
 
         //@TODO: should not overlap with one another

@@ -1,9 +1,13 @@
 import { Controller } from "./Controller.js";
+import { fetchPlayers } from "./service.js";
 
 export class Match {
-    constructor( players ) {
+    constructor() {
+        this.init();
+    }
 
-        this.controller = new Controller( players );
+    init() {
+        fetchPlayers().then((data) => new Controller( data ));
     }
 }
 

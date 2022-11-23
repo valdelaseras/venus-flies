@@ -1,5 +1,8 @@
-export class Venus {
-    constructor() {
+import {Player} from "./Player.js";
+
+export class Venus extends Player {
+    constructor( username ) {
+        super( username );
         this.ctx = document.querySelector('canvas').getContext('2d');
 
         //@TODO: should not overlap with one another

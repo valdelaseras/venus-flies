@@ -1,0 +1,25 @@
+{
+  "name": "venus-flies",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "service": "node app.js",
+    "fe": "http-server .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valdelaseras/venus-flies.git"
+  },
+  "author": "robin@weird.io",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valdelaseras/venus-flies/issues"
+  },
+  "homepage": "https://github.com/valdelaseras/venus-flies#readme",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
