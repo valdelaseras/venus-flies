@@ -1,28 +1,29 @@
 export class Controller {
     constructor() {
+        // content slot
         this.slot = document.querySelector('.slot');
+
+        // canvas context
         this.ctx = document.querySelector('canvas').getContext('2d');
+
+        this.init();
 
         document.addEventListener('keydown', this.handleKeydown.bind(this));
     }
 
     init(){}
 
-    startMatch(){}
+    startMatch(){
+        // init match
+    }
 
-    updateGameScore(){}
+    endMatch(){
+        this.displayMatchOver();
+    }
 
-    displayMatchOver(){}
-
-    displayRematchVote(){}
-
-    displayGameOver(){}
-
-    handleEndOfMatch(){}
-
-    handleEndOfGame(){}
-
-    positionMatched(){}
+    endGame(){
+        this.displayGameOver();
+    }
 
     handleKeydown( e ) {
         const player = this.players.find( player => player.username === this.player );
@@ -43,4 +44,52 @@ export class Controller {
     clearCanvas() {
         this.ctx.clearRect(0, 0, 1200, 800 );
     }
+
+    displayMatchOver(){
+    //     this.slot.innerHTML = `
+    //         <c-scoreboard class="c-scoreboard"/>
+    //         <c-rematch-vote class="c-rematch-vote"/>
+    //     `;
+    }
+
+    displayGameOver(){
+    //     clear slot
+    //     for every match in Game:
+    //     this.slot.append = `<c-scoreboard class="c-scoreboard"></c-scoreboard>`;
+    //     this.slot.append = `back to lobby`;
+    }
 }
+
+
+
+
+
+// updatePlayerScore( player ){
+//     if ( player.avatar === 'venus' ) {
+//         if ( this.venusChompedSuccessfully() ) {
+//             player.health += 1;
+//             player.score += 1;
+//         }
+//         if ( this.flyEscapedSuccessfully() ) {
+//             player.health -= 1;
+//             player.score -= 1;
+//         }
+//     } else {
+//         if ( this.flyEscapedSuccessfully() ){
+//             player.health += 1;
+//             player.score += 1;
+//         }
+//         if ( this.venusChompedSuccessfully() ){
+//             player.health -= 1;
+//             player.score -= 1;
+//         }
+//     }
+// }
+//
+// venusChompedSuccessfully(){
+//     // return true if chomped && fly position was in hitbox
+// }
+//
+// flyEscapedSuccessfully(){
+//     // return true if fly got nectar && escaped hitbox
+// }

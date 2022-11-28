@@ -1,10 +1,11 @@
-import {Fly} from "./Fly.js";
-import {Venus} from "./Venus.js";
-import {Player} from "./Player.js";
+import { Fly } from "./Fly.js";
+import { Venus } from "./Venus.js";
 
 export class Match {
     constructor( players ) {
         this.players = players;
+
+        // match team scores
         this.score = {
             venus: 0,
             fly: 0
@@ -13,7 +14,10 @@ export class Match {
         this.init();
     }
 
-    init() {}
+    init() {
+        this.initPlayers();
+        this.positionPlayers();
+    }
 
     initPlayers() {
         return this.players.map(( { avatar, username } ) => {
@@ -43,7 +47,5 @@ export class Match {
     randomizeInitialVenusPosition( username ){
         username.position.x = Math.random() * ( 1100 - 100 ) + 100;
     }
-
-    handleScore(){}
 }
 

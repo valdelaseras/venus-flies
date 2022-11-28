@@ -13,7 +13,7 @@ const CINSTRUCTIONS_TEMPLATE = `
                 </li>
                 <li>
                     <p>
-                        The game ends when one team reaches a collective 40 points, or all players on one team have been 
+                        The match ends when one team reaches a collective 40 points, or all players on one team have been 
                         disqualified.
                     </p>
                 </li>

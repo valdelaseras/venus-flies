@@ -39,4 +39,8 @@ export class Venus extends Player {
     chomp() {
         console.log('chomp');
     }
+
+    spawnNectar(){
+        // draw yellow dot or whatever in the trap
+    }
 }
