@@ -1,41 +1,48 @@
 const CLOBBY_TEMPLATE = `
 <div class="column">
-    <div class="column">
-        <div class="content">
-            <!--current player # + team choice-->
+    <div class="column two">
+        <div class="column">
+            <div class="column">
+                <div class="content">
+                    <!--@TODO: current player # + team choice-->
+                </div>
+            </div>
+            <div class="column">
+                <div class="content">
+                    <form class="form">
+                        <div class="form-group">
+                            <label for="username" class="bold">Enter a username</label>
+                            <input id="username" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="bold">Pick a team</label>
+                            
+                            <div class="radio-group horizontal">
+                                <label for="venus">
+                                    <input type="radio" 
+                                           id="venus"
+                                           name="avatar" 
+                                           value="venus"
+                                           checked/>Venus</label>
+                                
+                                <label for="fly">
+                                    <input type="radio" 
+                                           id="fly"
+                                           name="avatar" 
+                                           value="fly"/>Fly</label>
+                            </div>
+                            
+                        </div>
+                        <div class="form-action">
+                            <button type="button">Lock in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="column">
-        <div class="content">
-            <form class="form">
-                <div class="form-group">
-                    <label for="username" class="bold">Enter a username</label>
-                    <input id="username" type="text"/>
-                </div>
-                <div class="form-group">
-                    <label class="bold">Pick a team</label>
-                    
-                    <div class="radio-group horizontal">
-                        <label for="venus">
-                            <input type="radio" 
-                                   id="venus"
-                                   name="avatar" 
-                                   value="venus"
-                                   checked/>Venus</label>
-                        
-                        <label for="fly">
-                            <input type="radio" 
-                                   id="fly"
-                                   name="avatar" 
-                                   value="fly"/>Fly</label>
-                    </div>
-                    
-                </div>
-                <div class="form-action">
-                    <button type="button">Lock in</button>
-                </div>
-            </form>
-        </div>
+    <div class="column two">
+        <c-instructions class="c-instructions"></c-instructions>
     </div>
 </div>
 `;
@@ -55,7 +62,7 @@ const WAITING_ROOM_TEMPLATE = `
 </div>
 `;
 
-class CLobby extends HTMLElement {
+export class CLobby extends HTMLElement {
     constructor() {
         super();
 
