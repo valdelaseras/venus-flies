@@ -1,7 +1,13 @@
 @import "../components/header.css";
 @import "../components/main.css";
 @import "../components/footer.css";
+@import "../components/form.css";
+@import "../components/button.css";
+@import "../components/waiting-room.css";
 
 @import "../components/fly.css";
 @import "../components/venus.css";
 @import "../components/canvas.css";
+
+@import "../components/c-lobby.css";
+@import "../components/c-instructions.css";

@@ -7,6 +7,8 @@ export class Controller {
 
         this.player = 'b'; //@TODO
 
+        this.ctx = document.querySelector('canvas').getContext('2d');
+
         document.addEventListener('keydown', this.handleKeydown.bind(this));
     }
 
@@ -25,5 +27,12 @@ export class Controller {
              e.code === 'ArrowRight' || e.code === 'ArrowLeft' ){
             player.move( e );
         }
+
+        this.clearCanvas();
+        player.draw();
+    }
+
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, 1200, 800 );
     }
 }

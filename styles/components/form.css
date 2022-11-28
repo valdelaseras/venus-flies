@@ -1,0 +1,21 @@
+.form, .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-group {
+    padding: 20px;
+    border: 1px solid black;
+}
+
+input[type="text"] {
+    padding: 10px;
+}
+
+.radio-group.horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

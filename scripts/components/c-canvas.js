@@ -1,0 +1,15 @@
+const CCANVAS_TEMPLATE = `
+<canvas class="canvas"
+        height="800"
+        width="1200">
+</canvas>`;
+
+class CCanvas extends HTMLElement {
+    constructor() {
+        super();
+
+        this.innerHTML = CCANVAS_TEMPLATE;
+    }
+}
+
+customElements.define('c-canvas', CCanvas );

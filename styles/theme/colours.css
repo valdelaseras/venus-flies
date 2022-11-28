@@ -1,8 +1,12 @@
 :root {
     --primary-color: #222;
+    --secondary-color: #f2f2f2;
 
     --primary-accent-color: #ffb4b4;
     --secondary-accent-color: #e26262;
 
     --primary-font-color: var(--primary-color);
+
+    --green-font: forestgreen;
+    --red-font: red;
 }

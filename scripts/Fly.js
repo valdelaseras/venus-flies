@@ -30,7 +30,6 @@ export class Fly extends Player {
 
     move( e ) {
         const speed = 20;
-        console.log('move');
         if ( e.code === 'ArrowUp' ){
             this.y -= speed;
         } else if ( e.code === 'ArrowDown' ){
@@ -41,7 +40,7 @@ export class Fly extends Player {
             this.x += speed;
         }
 
-        // this.ctx.clearRect(0, 0, 1200, 800 );
+
         this.draw();
     }
 }
