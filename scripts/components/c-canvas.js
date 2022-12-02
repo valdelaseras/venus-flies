@@ -7,7 +7,9 @@ const CCANVAS_TEMPLATE = `
 class CCanvas extends HTMLElement {
     constructor() {
         super();
+    }
 
+    buildTemplate(){
         this.innerHTML = CCANVAS_TEMPLATE;
     }
 }

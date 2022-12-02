@@ -42,22 +42,7 @@ const CLOBBY_TEMPLATE = `
         </div>
     </div>
     <div class="column two">
-        <c-instructions class="c-instructions"></c-instructions>
-    </div>
-</div>
-`;
-
-const WAITING_ROOM_TEMPLATE = `
-<div class="waiting-room">
-    <div class="column">
-        <div class="content">
-            <p>
-                Waiting for other players...
-            </p>
-<!--        @TODO: "loading element" of a fly jittering around-->
-<!--        @TODO: display <locked in> of total players int-->
-            <p class="player-information"></p>
-        </div>
+        <c-instructions></c-instructions>
     </div>
 </div>
 `;
@@ -66,35 +51,18 @@ export class CLobby extends HTMLElement {
     constructor() {
         super();
 
-        this.innerHTML = CLOBBY_TEMPLATE;
-
-        this.username = "";
-        this.avatar = "";
-
         this.addEventListener('click', this.handleClick.bind(this));
     }
 
+    buildTemplate() {
+        this.innerHTML = CLOBBY_TEMPLATE;
+    }
+
     handleClick( e ) {
-        if ( e.target === this.querySelector('button') ){
-            this.username = this.getUsername();
-            this.avatar = this.getAvatar();
-
-            this.displayWaitingRoom();
+        if ( e.target === this.querySelector('button') ) {
+            const lockIn = new Event('lockIn', { bubbles: true });
+            this.dispatchEvent(lockIn);
         }
-    }
-
-    getUsername() {
-        return this.querySelector('#username').value;
-    }
-
-    getAvatar() {
-        return Array.from( this.querySelectorAll('input[name="avatar"]')).find(( option) => option.checked ).value;
-    }
-
-    displayWaitingRoom() {
-        this.innerHTML = WAITING_ROOM_TEMPLATE;
-
-        this.querySelector('.player-information').innerText = `You are playing as ${this.username}, the ${this.avatar}`;
     }
 }
 
