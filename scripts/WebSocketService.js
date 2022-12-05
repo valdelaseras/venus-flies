@@ -1,22 +1,30 @@
 export class WebSocketService {
-    constructor() {
+    constructor( lockInHandler, playerListHandler ) {
         this.ws = new WebSocket("ws://localhost:3000");
 
         this.ws.onmessage = this.onMessage.bind( this );
+        this.lockInHandler = lockInHandler;
+        this.playerListHandler = playerListHandler;
     }
 
     send( data ) {
         console.log(`[send]`);
+
         this.ws.send( JSON.stringify( data ));
     }
 
     onMessage( e ) {
         console.log(`[message]`);
+
         const parsedMessage = JSON.parse( e.data );
 
         switch( parsedMessage.type ) {
             case 'lockIn':
-                console.log(`[message] ${parsedMessage.type} ${parsedMessage.content.username}`);
+                const player = parsedMessage.content;
+                this.lockInHandler( player );
+                break;
+            case 'playerList':
+                this.playerListHandler( parsedMessage.content );
                 break;
         }
     }

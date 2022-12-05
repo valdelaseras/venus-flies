@@ -1,18 +1,34 @@
 import { WebSocketService } from "./WebSocketService.js";
 
+const APPLICATION_STATE = {
+    LOBBY: 'Lobby',
+    WAITING_ROOM: 'Waiting room'
+};
+
+
 export class Controller {
     constructor() {
         // content slot
         this.slot = document.querySelector('.slot');
+
+        this.state = APPLICATION_STATE.LOBBY;
+
+        this.lobby = undefined;
+        this.waitingRoom = undefined;
+        this.canvas = undefined;
 
         // canvas context
         // this.ctx = document.querySelector('canvas').getContext('2d');
 
         // document.addEventListener('keydown', this.handleKeydown.bind(this));
         this.player = {};
+        this.players = [];
 
         this.init();
-        this.socket = new WebSocketService();
+        this.socket = new WebSocketService(
+            this.lockInHandler.bind( this ),
+            this.playerListHandler.bind( this )
+        );
     }
 
     init(){
@@ -20,9 +36,9 @@ export class Controller {
     }
 
     initLobby() {
-        const lobby = document.createElement('c-lobby');
-        this.slot.appendChild( lobby );
-        lobby.buildTemplate();
+        this.lobby = document.createElement('c-lobby');
+        this.slot.appendChild( this.lobby );
+        this.lobby.buildTemplate();
 
         document.addEventListener('lockIn', this.lobbyHandler.bind(this) );
     }
@@ -31,7 +47,7 @@ export class Controller {
         this.player = {
             username: document.querySelector('#username').value,
             avatar: Array.from( document.querySelectorAll('input[name="avatar"]')).find(( option) => option.checked ).value
-        }
+        };
 
         const data = {
             type: 'lockIn',
@@ -40,16 +56,32 @@ export class Controller {
                 avatar: this.player.avatar
             }
         }
-        this.socket.send( data )
 
         this.clearSlot();
         this.initWaitingRoom();
+
+        this.socket.send( data )
     }
 
     initWaitingRoom(){
-        const waitingRoom = document.createElement('c-waiting-room');
-        this.slot.appendChild( waitingRoom );
-        waitingRoom.buildTemplate( this.player.username, this.player.avatar );
+        this.state = APPLICATION_STATE.WAITING_ROOM;
+        this.waitingRoom = document.createElement('c-waiting-room');
+        this.slot.appendChild( this.waitingRoom );
+        this.waitingRoom.buildTemplate();
+    }
+
+    playerListHandler( playerList ) {
+        if ( this.state !== APPLICATION_STATE.WAITING_ROOM ) return;
+
+        this.players = playerList;
+        this.waitingRoom.listPlayers( this.players );
+    }
+
+    lockInHandler( player ) {
+        if ( this.state !== APPLICATION_STATE.WAITING_ROOM ) return;
+
+        this.players.push( player );
+        this.waitingRoom.listPlayers( this.players );
     }
 
     // initCanvas(){

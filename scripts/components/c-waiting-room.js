@@ -5,11 +5,7 @@ const CWAITING_ROOM_TEMPLATE = `
             <div class="waiting-room">
                 <div class="column">
                     <div class="content">
-                        <p class="player-information"></p>
-                        
-                        <p>
-                            Waiting for other players...
-                        </p>
+                        <p>Waiting for players...</p>
                         <ul></ul>
                     </div>
                 </div>
@@ -29,9 +25,22 @@ export class CWaitingRoom extends HTMLElement {
         super();
     }
 
-    buildTemplate( username, avatar ){
+    buildTemplate(){
         this.innerHTML = CWAITING_ROOM_TEMPLATE;
-        this.querySelector('.player-information').innerText = `You are playing as ${username}, the ${avatar}`;
+    }
+
+    listPlayers( players ) {
+        this.querySelector('ul').innerHTML = '';
+
+        players.forEach( ( player ) => {
+           this.listPlayer( player )
+        });
+    }
+
+    listPlayer( player ) {
+        const li = document.createElement('li');
+        li.innerText = `${player.username} joined the match as ${player.avatar}`;
+        this.querySelector('ul').appendChild( li );
     }
 }
 
