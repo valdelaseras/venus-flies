@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Venus Flies</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="./styles/index.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles/index.css">
 </head>
     <body>
         <main class="main">
@@ -18,14 +18,14 @@
             </div>
         </main>
 
-        <script defer type="module" src="/scripts/WebSocketService.js"></script>
-        <script defer type="module" src="/scripts/components/c-lobby.js"></script>
-        <script defer type="module" src="/scripts/components/c-waiting-room.js"></script>
-        <script defer type="module" src="/scripts/components/c-instructions.js"></script>
-        <script defer type="module" src="/scripts/components/c-canvas.js"></script>
+        <script defer type="module" src="./scripts/WebSocketService.js"></script>
+        <script defer type="module" src="./scripts/components/c-lobby.js"></script>
+        <script defer type="module" src="./scripts/components/c-waiting-room.js"></script>
+        <script defer type="module" src="./scripts/components/c-instructions.js"></script>
+        <script defer type="module" src="./scripts/components/c-canvas.js"></script>
 
         <script type="module">
-            import { Controller } from './scripts/Controller.js';
+            import { Controller } from './scripts/Controller';
 
             new Controller();
         </script>

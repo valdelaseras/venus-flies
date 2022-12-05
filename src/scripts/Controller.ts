@@ -1,28 +1,30 @@
-import { WebSocketService } from "./WebSocketService.js";
+import { WebSocketService } from "./WebSocketService";
+import { Player } from "./Player";
+import { CLobby } from "./components/c-lobby";
+import { CWaitingRoom } from "./components/c-waiting-room";
+import { CCanvas } from "./components/c-canvas";
 
-const APPLICATION_STATE = {
-    LOBBY: 'Lobby',
-    WAITING_ROOM: 'Waiting room'
-};
-
+enum APPLICATION_STATE {
+    LOBBY,
+    WAITING_ROOM
+}
 
 export class Controller {
+    slot: HTMLElement;
+    appState = APPLICATION_STATE.LOBBY;
+    lobby: CLobby | undefined;
+    waitingRoom: CWaitingRoom | undefined;
+    canvas: CCanvas | undefined;
+    player: Player | undefined;
+    players: Player[] = [];
+    socket: WebSocketService;
+
     constructor() {
-        // content slot
-        this.slot = document.querySelector('.slot');
-
-        this.state = APPLICATION_STATE.LOBBY;
-
-        this.lobby = undefined;
-        this.waitingRoom = undefined;
-        this.canvas = undefined;
+        this.slot = document.querySelector('.slot')!;
 
         // canvas context
         // this.ctx = document.querySelector('canvas').getContext('2d');
-
         // document.addEventListener('keydown', this.handleKeydown.bind(this));
-        this.player = {};
-        this.players = [];
 
         this.init();
         this.socket = new WebSocketService(
@@ -36,7 +38,7 @@ export class Controller {
     }
 
     initLobby() {
-        this.lobby = document.createElement('c-lobby');
+        this.lobby = ( document.createElement('c-lobby') as CLobby );
         this.slot.appendChild( this.lobby );
         this.lobby.buildTemplate();
 
@@ -44,10 +46,10 @@ export class Controller {
     }
 
     lobbyHandler() {
-        this.player = {
-            username: document.querySelector('#username').value,
-            avatar: Array.from( document.querySelectorAll('input[name="avatar"]')).find(( option) => option.checked ).value
-        };
+        this.player = new Player(
+            ( document.querySelector('#username') as HTMLInputElement ).value,
+            Array.from<HTMLInputElement>( document.querySelectorAll('input[name="avatar"]')).find(( option ) => option.checked )!.value
+        );
 
         const data = {
             type: 'lockIn',
@@ -64,24 +66,24 @@ export class Controller {
     }
 
     initWaitingRoom(){
-        this.state = APPLICATION_STATE.WAITING_ROOM;
-        this.waitingRoom = document.createElement('c-waiting-room');
+        this.appState = APPLICATION_STATE.WAITING_ROOM;
+        this.waitingRoom = ( document.createElement('c-waiting-room') as CWaitingRoom );
         this.slot.appendChild( this.waitingRoom );
         this.waitingRoom.buildTemplate();
     }
 
-    playerListHandler( playerList ) {
-        if ( this.state !== APPLICATION_STATE.WAITING_ROOM ) return;
+    playerListHandler( playerList: Player[] ){
+        if ( this.appState !== APPLICATION_STATE.WAITING_ROOM ) return;
 
         this.players = playerList;
-        this.waitingRoom.listPlayers( this.players );
+        ( this.waitingRoom as CWaitingRoom ).listPlayers( this.players );
     }
 
-    lockInHandler( player ) {
-        if ( this.state !== APPLICATION_STATE.WAITING_ROOM ) return;
+    lockInHandler( player: Player ) {
+        if ( this.appState !== APPLICATION_STATE.WAITING_ROOM ) return;
 
         this.players.push( player );
-        this.waitingRoom.listPlayers( this.players );
+        ( this.waitingRoom as CWaitingRoom ).listPlayers( this.players );
     }
 
     // initCanvas(){

@@ -1,5 +1,5 @@
-import { Fly } from "./Fly.js";
-import { Venus } from "./Venus.js";
+import { Fly } from "./Fly";
+import { Venus } from "./Venus";
 
 export class Match {
     constructor( players ) {

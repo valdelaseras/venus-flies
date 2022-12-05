@@ -4,7 +4,7 @@ const CCANVAS_TEMPLATE = `
         width="1200">
 </canvas>`;
 
-class CCanvas extends HTMLElement {
+export class CCanvas extends HTMLElement {
     constructor() {
         super();
     }
