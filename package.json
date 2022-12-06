@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "build": "tsc && cp ./src/index.html ./dist && cp -R ./src/styles ./dist/styles && http-server ./dist",
-    "be": "node app.mjs",
+    "build": "tsc && cp ./src/index.html ./dist && cp -R ./src/styles ./dist/styles",
+    "serve": "http-server ./dist",
+    "service": "node app.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

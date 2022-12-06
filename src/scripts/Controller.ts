@@ -1,5 +1,5 @@
-import { WebSocketService } from "./WebSocketService";
-import { Player } from "./Player";
+import { WebSocketService } from "./WebSocketService.js";
+import { Player } from "./Player.js";
 import { CLobby } from "./components/c-lobby";
 import { CWaitingRoom } from "./components/c-waiting-room";
 import { CCanvas } from "./components/c-canvas";

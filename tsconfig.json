@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
     "allowJs": true,
     "checkJs": false,
     "outDir": "dist",
@@ -11,7 +10,6 @@
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
     "declaration": true, /* Generates corresponding '.d.ts' file. */
     "strictNullChecks": true,
-    "resolveJsonModule": true,
     "sourceMap": true,
     "baseUrl": "."
   },
