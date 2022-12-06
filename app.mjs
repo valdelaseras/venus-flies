@@ -53,9 +53,9 @@ wss.on( 'connection', ( ws ) => {
                 ws.send( JSON.stringify( playerList ) );
                 broadcast( message, ws );
                 break;
-            // case 'updatePosition':
-            //     broadcast( message, ws );
-            //     break;
+            case 'playerIsReady':
+                broadcast( message, ws );
+                break;
         }
     });
 });

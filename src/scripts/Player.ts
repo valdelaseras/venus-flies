@@ -1,5 +1,15 @@
+export enum PLAYER_STATE {
+    UNDEFINED,
+    LOCKED_IN,
+    READY,
+    DEAD,
+    DISQUALIFIED
+}
+
 export class Player {
+    id: string;
     username: string;
+    state = PLAYER_STATE.UNDEFINED;
     avatar: string;
     score: number;
     health: number;
@@ -12,6 +22,7 @@ export class Player {
         username: string,
         avatar: string
     ) {
+        this.id = Player.generateId( 10 );
         this.username = username;
         this.avatar = avatar;
         this.score = 20;
@@ -24,4 +35,14 @@ export class Player {
 
     action(){}
     draw(){}
+
+    private static generateId( length: number ) {
+        let result = '';
+        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
 }

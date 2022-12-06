@@ -1,10 +1,14 @@
 export class WebSocketService {
-    constructor( lockInHandler, playerListHandler ) {
+    constructor(
+        lockInHandler,
+        waitingRoomHandler,
+        playerIsReadyHandler ) {
         this.ws = new WebSocket("ws://localhost:3000");
-
         this.ws.onmessage = this.onMessage.bind( this );
+
         this.lockInHandler = lockInHandler;
-        this.playerListHandler = playerListHandler;
+        this.waitingRoomHandler = waitingRoomHandler;
+        this.playerIsReadyHandler = playerIsReadyHandler;
     }
 
     send( data ) {
@@ -24,7 +28,10 @@ export class WebSocketService {
                 this.lockInHandler( player );
                 break;
             case 'playerList':
-                this.playerListHandler( parsedMessage.content );
+                this.waitingRoomHandler( parsedMessage.content );
+                break;
+            case 'playerIsReady':
+                this.playerIsReadyHandler( parsedMessage.content );
                 break;
         }
     }
@@ -33,7 +40,7 @@ export class WebSocketService {
         console.log(`[close]`);
 
         this.ws.onclose = ( e ) => {
-            console.log(`[close] ${e.data}`);
+            console.log(`[close] ${e}`);
         }
     }
 
@@ -41,7 +48,7 @@ export class WebSocketService {
         console.log(`[error]`);
 
         this.ws.onerror = ( e ) => {
-            console.log(`[error] ${e.data}`);
+            console.log(`[error] ${e}`);
         }
     }
 }
